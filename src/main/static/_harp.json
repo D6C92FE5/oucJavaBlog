@@ -1,0 +1,6 @@
+{
+  "compile": {
+      "info": "This item is for other tools, harp itself does not support it",
+      "output": "../webapp"
+  }
+}

@@ -1,0 +1,31 @@
+
+mixin link-button
+  a(class=attributes.class, id=attributes.id, href="javascript:;")
+    block
+
+.post
+  h2.title 文章 1
+  .meta
+    | 由
+    span.author lzlk
+    | 发表于
+    span.date 刚刚
+  .body
+    p 内容内容内容内容内容内容
+    p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+  .comments
+    .comment
+      .meta
+        | 由
+        span.author abc
+        | 发表于
+        span.date 刚刚
+      p 评论评论评论评论评论评论评论
+    .comment
+      .meta
+        | 由
+        span.author def
+        | 发表于
+        span.date 刚刚
+      p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+

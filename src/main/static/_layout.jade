@@ -1,0 +1,82 @@
+
+doctype html
+html(lang="zh-cn")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(http-equiv="X-UA-Compatible",content="IE=Edge")
+    title 博客
+
+    mixin css(href)
+      link(rel="stylesheet", href=href)
+    +css("components/bootstrap/css/bootstrap.css")
+    +css("components/select2/select2.css")
+    +css("assets/main.css")
+
+  body
+    mixin link-button
+      a(class=attributes.class, id=attributes.id, href="javascript:;")
+        block
+    mixin icon-link-button(icon)
+      +link-button(class=attributes.class, id=attributes.id)
+        span.glyphicon(class="glyphicon-" + icon)
+        block
+
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/") 博客
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href="index") 首页
+            li
+              a(href="about") 关于
+
+    .container
+      .blog-header
+        h1.blog-title 博客
+          small Java EE 实验
+
+      .row
+
+        .blog-main.col-md-8.col-sm-12
+          != yield
+
+        .clearfix.visible-sm
+
+        .blog-sidebar.col-md-3.col-md-offset-1
+          .sidebar-module.sidebar-module-inset
+            h4 关于
+            p 这一个博客，嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷
+          .sidebar-module.tags
+            h4 标签
+            a(href="#") 标签 1
+            a(href="#") 标签 2
+            a(href="#") 标签 3
+            a(href="#") 标签 4
+          .sidebar-module
+            h4 友情链接
+            ul.list-unstyled
+              li
+                a(href="#") 链接 1
+              li
+                a(href="#") 链接 2
+              li
+                a(href="#") 链接 3
+              li
+                a(href="#") 链接 4
+
+
+
+  script(src="components/jquery/jquery-min.js")
+  script(src="components/underscore.js/underscore-min.js")
+  script(src="components/handlebars.js/handlebars.js")
+  script(src="components/bootstrap/js/bootstrap.js")
+  script(src="components/select2/select2.js")
+  script(src="components/moment.js/moment-with-langs.min.js")
+  script(src="assets/main.js")
