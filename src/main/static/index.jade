@@ -10,6 +10,9 @@ mixin link-button
     a(href="/post/{{id}}")
       h2.title {{title}}
     .meta
+      .operate.show-on-hover
+        a(href="/post-delete/{{id}}") 删除
+        a(href="/post-edit/{{id}}") 修改
       | 由
       span.author {{author}}
       | 发表于

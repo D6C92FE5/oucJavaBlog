@@ -15,6 +15,7 @@ public class Application implements SparkApplication {
         new PostHandler().acceptGet();
         new PostEditHandlerForGet().acceptGet();
         new PostEditHandlerForPost().acceptPost();
+        new PostDeleteHandler().acceptGet();
         new CommentHandler().acceptPost();
         new LoginHandler().acceptGet().acceptPost();
         new LogoutHandler().acceptGet();

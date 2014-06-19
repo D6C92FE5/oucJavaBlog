@@ -7,6 +7,9 @@ mixin link-button
   // {{#post}}
   h2.title {{title}}
   .meta
+    .operate
+      a(href="/post-delete/{{id}}") 删除
+      a(href="/post-edit/{{id}}") 修改
     | 由
     span.author {{author}}
     | 发表于
