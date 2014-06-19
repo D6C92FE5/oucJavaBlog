@@ -1,0 +1,8 @@
+{
+  "login": {
+    "layout": "_layout-auth"
+  },
+  "signup": {
+    "layout": "_layout-auth"
+  }
+}

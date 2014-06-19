@@ -5,18 +5,19 @@ mixin link-button
 
 .posts
 
+  // {{#post}}
   .post
-    h2.title 文章 1
+    a(href="/post/{{id}}")
+      h2.title {{title}}
     .meta
       | 由
-      span.author lzlk
+      span.author {{author}}
       | 发表于
-      span.date 刚刚
-    .body
-      p 内容内容内容内容内容内容
-      p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+      span.date {{date}}
+    .body {{{body}}}
     .comment
-      a(href="post?id=2#comment") 5 条评论
+      a(href="/post/{{id}}#comment") {{comment_count}} 条评论
+  // {{/post}}
 
   .post
     h2.title 文章 2
@@ -29,7 +30,7 @@ mixin link-button
       p 内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
       p 测试测试
     .comment
-      a(href="post?id=1#comment") 3 条评论
+      a(href="/post?id=1#comment") 3 条评论
 
 ul.pager
   li.previous.disabled

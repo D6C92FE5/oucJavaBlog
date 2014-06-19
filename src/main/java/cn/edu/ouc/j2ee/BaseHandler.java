@@ -13,6 +13,8 @@ public abstract class BaseHandler implements TemplateViewRoute {
 
     protected String hyphenName;
 
+    protected boolean authenticated = false;
+
     protected Request request;
     protected Response response;
 
@@ -20,7 +22,7 @@ public abstract class BaseHandler implements TemplateViewRoute {
 
     public BaseHandler() {
         String name = this.getClass().getSimpleName();
-        for (String suffix : Arrays.asList("GetHandler", "PostHandler", "Handler")) {
+        for (String suffix : Arrays.asList("HandlerForGet", "HandlerForPost", "Handler")) {
             if (name.endsWith(suffix)) {
                 name = name.substring(0, name.length() - suffix.length());
                 break;
@@ -40,6 +42,13 @@ public abstract class BaseHandler implements TemplateViewRoute {
     public ModelAndView handle(Request request, Response response) {
         this.request = request;
         this.response = response;
+
+        if (authenticated && request.session().attribute("user") == null) {
+            response.redirect("/login");
+            return null;
+        }
+
+        modal.put("username", request.session().attribute("user"));
 
         Object res = handle();
         if (res instanceof ModelAndView) {

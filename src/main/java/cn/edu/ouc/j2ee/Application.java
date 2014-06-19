@@ -1,9 +1,8 @@
 package cn.edu.ouc.j2ee;
 
+import cn.edu.ouc.j2ee.handlers.*;
 import spark.Spark;
 import spark.servlet.SparkApplication;
-
-import cn.edu.ouc.j2ee.handlers.DemoHandler;
 
 
 public class Application implements SparkApplication {
@@ -12,8 +11,15 @@ public class Application implements SparkApplication {
     public void init() {
         Spark.staticFileLocation("/webapp");
 
-        new DemoHandler().acceptGet().acceptGet("/").acceptPost();
-
+        new IndexHandler().acceptGet().acceptGet("/").acceptGet("/post");
+        new PostHandler().acceptGet();
+        new PostEditHandlerForGet().acceptGet();
+        new PostEditHandlerForPost().acceptPost();
+        new CommentHandler().acceptPost();
+        new LoginHandler().acceptGet().acceptPost();
+        new LogoutHandler().acceptGet();
+        new SignupHandler().acceptGet().acceptPost();
+        new AboutHandler().acceptGet().acceptPost();
 
     }
 

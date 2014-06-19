@@ -7,6 +7,7 @@ body, h1, h2, h3, h3, h5, h6, .h1, .h2, .h3, .h3, .h5, .h6
 
 body
   padding-top 50px
+  padding-bottom 50px
 
 
 @media (min-width: 1200px)
@@ -25,6 +26,11 @@ body
   padding-left 20px
   font-size 0.5em
   color #bbb
+
+.blog-main-head
+  margin-top 0;
+  margin-bottom 20px;
+  font-size 2.4em;
 
 
 .sidebar-module
@@ -62,7 +68,7 @@ body
 
 .post .meta span
   padding 4px
-  color #428bca
+  color #3C763D
 
 .post .meta .author
   font-style italic
@@ -75,13 +81,17 @@ body
   margin-bottom 80px
 
 
-.comments
-  margin-top 30px
+.comments, .comment-add
+  margin-top 20px
   padding 20px
   background-color #f9f9f9
   border 1px solid #ddd
   border-radius 4px
   //box-shadow 0 0 10px #555
+
+.comment-head
+  margin 0 0 20px 0
+  font-size 2em
 
 .comment
   margin-bottom 15px
@@ -93,3 +103,15 @@ body
 
 .comment p
   margin 0
+
+
+.bootstrap-switch
+  width 200px
+
+
+.note-editor
+  border 1px solid #ccc
+  border-radius 4px
+
+.note-toolbar.btn-toolbar
+  border-radius 4px

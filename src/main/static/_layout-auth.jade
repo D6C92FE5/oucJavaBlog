@@ -1,0 +1,17 @@
+
+doctype html
+html(lang="zh-cn")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible",content="IE=Edge")
+    title 博客
+
+    mixin css(href)
+      link(rel="stylesheet", href=href)
+    +css("components/bootstrap/css/bootstrap.css")
+    +css("assets/auth.css")
+
+  body
+    .container.auth
+      != yield

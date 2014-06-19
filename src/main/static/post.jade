@@ -4,28 +4,45 @@ mixin link-button
     block
 
 .post
-  h2.title 文章 1
+  // {{#post}}
+  h2.title {{title}}
   .meta
     | 由
-    span.author lzlk
+    span.author {{author}}
     | 发表于
-    span.date 刚刚
-  .body
-    p 内容内容内容内容内容内容
-    p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
-  .comments
-    .comment
-      .meta
-        | 由
-        span.author abc
-        | 发表于
-        span.date 刚刚
-      p 评论评论评论评论评论评论评论
-    .comment
-      .meta
-        | 由
-        span.author def
-        | 发表于
-        span.date 刚刚
-      p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+    span.date {{date}}
+  .body {{{body}}}
+  // {{/post}}
 
+.comments
+  h2.comment-head 评论
+  // {{#comment}}
+  .comment(id="comment-{{id}}")
+    .meta
+      | 由
+      span.author {{author}}
+      | 发表于
+      span.date {{date}}
+    p {{{body}}}
+  // {{/comment}}
+  .comment
+    .meta
+      | 由
+      span.author def
+      | 发表于
+      span.date 刚刚
+    p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+
+.comment-add
+  h2.comment-head 发表评论
+  form(method="post", action="/comment/{{post.id}}")
+    .form-group
+      label(for="name") 昵称
+      input#title.form-control(type="input", name="name", placeholder="请输入您的昵称")
+    .form-group
+      label(for="email") 邮箱
+      input#title.form-control(type="input", name="email", placeholder="请输入您的邮箱")
+    .form-group
+      label(for="body") 内容
+      textarea#body.form-control(rows="5", name="body")
+    button.btn.btn-primary(type="submit") 提交

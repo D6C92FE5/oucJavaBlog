@@ -3,15 +3,18 @@ doctype html
 html(lang="zh-cn")
   head
     meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible",content="IE=Edge")
     title 博客
 
     mixin css(href)
       link(rel="stylesheet", href=href)
-    +css("components/bootstrap/css/bootstrap.css")
-    +css("components/select2/select2.css")
-    +css("assets/main.css")
+    +css("/components/bootstrap/css/bootstrap.css")
+    +css("/components/font-awesome/css/font-awesome.min.css")
+    +css("/components/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css")
+    +css("/components/summernote/summernote.css")
+    +css("/components/summernote/summernote-bs3.css")
+    +css("/assets/main.css")
 
   body
     mixin link-button
@@ -33,9 +36,25 @@ html(lang="zh-cn")
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href="index") 首页
+              a(href="/index") 首页
             li
-              a(href="about") 关于
+              a(href="/about") 关于
+          ul.nav.navbar-nav.navbar-right
+            // {{#username}}
+            li.dropdown
+              a.dropdown-toggle(href="#", data-toggle="dropdown") {{username}} <b class="caret"></b>
+              ul.dropdown-menu
+                li
+                  a(href="/logout") 注销
+                li
+                  a(href="/change-password") 修改密码
+            // {{/username}}
+            // {{^username}}
+            li
+              a(href="/signup") 注册
+            li
+              a(href="/login") 登录
+            // {{/username}}
 
     .container
       .blog-header
@@ -53,7 +72,7 @@ html(lang="zh-cn")
           .sidebar-module.sidebar-module-inset
             h4 关于
             p 这一个博客，嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷
-          .sidebar-module.tags
+          .sidebar-module.tags.hide
             h4 标签
             a(href="#") 标签 1
             a(href="#") 标签 2
@@ -72,11 +91,12 @@ html(lang="zh-cn")
                 a(href="#") 链接 4
 
 
-
-  script(src="components/jquery/jquery-min.js")
-  script(src="components/underscore.js/underscore-min.js")
-  script(src="components/handlebars.js/handlebars.js")
-  script(src="components/bootstrap/js/bootstrap.js")
-  script(src="components/select2/select2.js")
-  script(src="components/moment.js/moment-with-langs.min.js")
-  script(src="assets/main.js")
+  script(src="/components/jquery/jquery-min.js")
+  script(src="/components/underscore.js/underscore-min.js")
+  script(src="/components/handlebars.js/handlebars.js")
+  script(src="/components/bootstrap/js/bootstrap.js")
+  script(src="/components/bootstrap-switch/js/bootstrap-switch.js")
+  script(src="/components/moment.js/moment-with-langs.min.js")
+  script(src="/components/summernote/summernote.min.js")
+  script(src="/components/summernote/lang/summernote-zh-CN.js")
+  script(src="/assets/main.js")

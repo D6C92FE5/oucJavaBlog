@@ -1,0 +1,17 @@
+
+h2.blog-main-head 编辑文章
+form(method="post")
+  // {{#post}}
+  .form-group
+    label(for="title") 标题
+    input#title.form-control(type="input", name="title", placeholder="请输入标题", value="{{title}}")
+  .form-group
+    label(for="body") 内容
+    textarea#body.wysiwyg.form-control(rows="10", name="body") {{body}}
+  .form-group
+    label 可见性
+    div
+      input.checkbox.switch(type="checkbox", name="public", checked="{{public}}",
+          data-on-color="success", data-on-text="所有人可见", data-off-text="仅自己可见")
+  button.btn.btn-primary(type="submit") 提交
+  // {{/post}}
