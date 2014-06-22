@@ -40,7 +40,7 @@ html(lang="zh-cn")
             li
               a(href="/about") 关于
           ul.nav.navbar-nav.navbar-right
-            // {{#username}}
+            // {{#user}}
             li.dropdown
               a.dropdown-toggle(href="#", data-toggle="dropdown") {{username}} <b class="caret"></b>
               ul.dropdown-menu
@@ -48,13 +48,13 @@ html(lang="zh-cn")
                   a(href="/logout") 注销
                 li
                   a(href="/change-password") 修改密码
-            // {{/username}}
-            // {{^username}}
+            // {{/user}}
+            // {{^user}}
             li
               a(href="/signup") 注册
             li
               a(href="/login") 登录
-            // {{/username}}
+            // {{/user}}
 
     .container
       .blog-header
@@ -64,7 +64,15 @@ html(lang="zh-cn")
       .row
 
         .blog-main.col-md-8.col-sm-12
+          // {{^message}}
           != yield
+          // {{/message}}
+          // {{#message}}
+          .message
+            p {{message}}
+            +link-button.btn.btn-primary.go-back 返回
+          // {{/message}}
+
 
         .clearfix.visible-sm
 

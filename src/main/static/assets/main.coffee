@@ -7,6 +7,10 @@ current_href = location.pathname.split("/")[1] or 'index'
 $('.navbar a[href^="' + current_href + '"]').parent().addClass('active')
 
 
+$('.go-back').click ->
+  history.back()
+
+
 $('.date').each ->
   date = $(this).text()
   $(this).attr('title', date).text(moment(date).fromNow())

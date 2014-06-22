@@ -60,7 +60,7 @@ public abstract class BaseHandler implements TemplateViewRoute {
             return null;
         }
 
-        modal.put("username", request.session().attribute("user"));
+        modal.put("user", request.session().attribute("user"));
 
         Object res = handle();
 
