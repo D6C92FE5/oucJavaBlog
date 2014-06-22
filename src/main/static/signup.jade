@@ -3,7 +3,7 @@ form(method="post")
   h1 新账户
     span.error {{message}}
   input.form-control(type="text", name="username", placeholder="用户名", autofocus)
-  input.form-control(type="text", name="password", placeholder="密码")
-  input.form-control(type="text", name="password2", placeholder="确认密码")
+  input.form-control(type="password", name="password", placeholder="密码")
+  input.form-control(type="password", name="password2", placeholder="确认密码")
   button.btn.btn-lg.btn-success(type="submit") 创建
   a.alter(href="/login") 登录
