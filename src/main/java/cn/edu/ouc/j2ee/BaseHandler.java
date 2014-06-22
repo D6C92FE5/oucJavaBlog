@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.base.CaseFormat;
+import org.hibernate.Session;
 import spark.*;
 import spark.template.mustache.MustacheTemplateEngine;
 
@@ -17,6 +18,8 @@ public abstract class BaseHandler implements TemplateViewRoute {
 
     protected Request request;
     protected Response response;
+
+    protected Session database;
 
     protected HashMap<String, Object> modal = new HashMap<>();
 
@@ -38,10 +41,19 @@ public abstract class BaseHandler implements TemplateViewRoute {
         return new ModelAndView(modal, hyphenName + ".html");
     }
 
+    protected Object showMessage(String message) {
+        HashMap<String, Object> modal = new HashMap<>();
+        modal.put("message", message);
+        return rendered(modal);
+    }
+
     public abstract Object handle();
     public ModelAndView handle(Request request, Response response) {
         this.request = request;
         this.response = response;
+
+        this.database = Util.getHibernateSession();
+        this.database.beginTransaction();
 
         if (authenticated && request.session().attribute("user") == null) {
             response.redirect("/login");
@@ -51,6 +63,10 @@ public abstract class BaseHandler implements TemplateViewRoute {
         modal.put("username", request.session().attribute("user"));
 
         Object res = handle();
+
+        this.database.getTransaction().commit();
+        this.database.close();
+
         if (res instanceof ModelAndView) {
             return (ModelAndView) res;
         } else {

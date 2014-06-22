@@ -28,6 +28,21 @@
             <artifactId>spark-template-mustache</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -35,6 +50,12 @@
             <resource>
                 <targetPath>webapp</targetPath>
                 <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main</directory>
+                <includes>
+                    <include>hibernate.cfg.xml</include>
+                </includes>
             </resource>
         </resources>
         <plugins>
