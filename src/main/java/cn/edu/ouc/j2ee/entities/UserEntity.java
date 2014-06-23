@@ -1,6 +1,7 @@
 package cn.edu.ouc.j2ee.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -9,6 +10,7 @@ public class UserEntity {
     private int id;
     private String username;
     private String password;
+    private List<PostEntity> posts;
 
     @Id
     @Column(name = "id")
@@ -62,5 +64,14 @@ public class UserEntity {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "author")
+    public List<PostEntity> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<PostEntity> posts) {
+        this.posts = posts;
     }
 }

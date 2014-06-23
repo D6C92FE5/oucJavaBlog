@@ -2,6 +2,7 @@ package cn.edu.ouc.j2ee.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -11,8 +12,9 @@ public class PostEntity {
     private Date date;
     private boolean publicity;
     private String title;
-    private int authorId;
     private String body;
+    private List<CommentEntity> comments;
+    private UserEntity author;
 
     @Id
     @Column(name = "id")
@@ -55,16 +57,6 @@ public class PostEntity {
     }
 
     @Basic
-    @Column(name = "author_id")
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
-
-    @Basic
     @Column(name = "body")
     public String getBody() {
         return body;
@@ -81,7 +73,6 @@ public class PostEntity {
 
         PostEntity that = (PostEntity) o;
 
-        if (authorId != that.authorId) return false;
         if (id != that.id) return false;
         if (publicity != that.publicity) return false;
         if (body != null ? !body.equals(that.body) : that.body != null) return false;
@@ -97,8 +88,26 @@ public class PostEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (publicity ? 1 : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + authorId;
         result = 31 * result + (body != null ? body.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "post")
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
+    public UserEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserEntity author) {
+        this.author = author;
     }
 }
