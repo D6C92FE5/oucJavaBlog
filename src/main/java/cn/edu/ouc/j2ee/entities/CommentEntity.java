@@ -8,6 +8,7 @@ import java.util.Date;
 @Table(name = "comment", schema = "", catalog = "ouc_java_blog")
 public class CommentEntity {
     private int id;
+    private int postId;
     private Date date;
     private String author;
     private String email;
@@ -21,6 +22,16 @@ public class CommentEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "post_id")
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
     @Basic
@@ -70,6 +81,7 @@ public class CommentEntity {
 
         CommentEntity that = (CommentEntity) o;
 
+        if (postId != that.postId) return false;
         if (id != that.id) return false;
         if (author != null ? !author.equals(that.author) : that.author != null) return false;
         if (body != null ? !body.equals(that.body) : that.body != null) return false;
@@ -85,6 +97,7 @@ public class CommentEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + postId;
         result = 31 * result + (body != null ? body.hashCode() : 0);
         return result;
     }

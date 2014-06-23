@@ -7,11 +7,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `author` text,
   `email` varchar(255) DEFAULT NULL,
   `body` longtext,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `comment_post` (`post_id`),
+  CONSTRAINT `comment_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
