@@ -77,9 +77,15 @@ html(lang="zh-cn")
         .clearfix.visible-sm
 
         .blog-sidebar.col-md-3.col-md-offset-1
+          // {{^user}}
           .sidebar-module.sidebar-module-inset
             h4 关于
             p 这一个博客，嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷嗷
+          // {{/user}}
+          // {{#user}}
+          .sidebar-module
+            a(href="/post-edit").btn.btn-success.btn-block 发表新文章
+          // {{/user}}
           .sidebar-module.tags.hide
             h4 标签
             a(href="#") 标签 1
