@@ -1,4 +1,4 @@
-package cn.edu.ouc.j2ee.entity;
+package cn.edu.ouc.j2ee.entities;
 
 import javax.persistence.*;
 

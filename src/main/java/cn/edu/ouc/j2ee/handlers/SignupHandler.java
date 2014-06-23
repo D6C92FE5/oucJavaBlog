@@ -1,7 +1,7 @@
 package cn.edu.ouc.j2ee.handlers;
 
 import cn.edu.ouc.j2ee.BaseHandler;
-import cn.edu.ouc.j2ee.entity.UserEntity;
+import cn.edu.ouc.j2ee.entities.UserEntity;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 
