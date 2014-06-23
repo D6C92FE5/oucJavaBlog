@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.edu.ouc.j2ee.entities.UserEntity;
 import com.google.common.base.CaseFormat;
 import org.hibernate.Session;
 import spark.*;
@@ -20,6 +21,8 @@ public abstract class BaseHandler implements TemplateViewRoute {
     protected Response response;
 
     protected Session database;
+
+    protected UserEntity currentUser;
 
     protected HashMap<String, Object> modal = new HashMap<>();
 
@@ -52,10 +55,12 @@ public abstract class BaseHandler implements TemplateViewRoute {
         this.request = request;
         this.response = response;
 
-        this.database = Util.getHibernateSession();
-        this.database.beginTransaction();
+        database = Util.getHibernateSession();
+        database.beginTransaction();
 
-        if (authenticated && request.session().attribute("user") == null) {
+        currentUser = request.session().attribute("user");
+
+        if (authenticated && currentUser == null) {
             response.redirect("/login");
             return null;
         }
@@ -64,8 +69,8 @@ public abstract class BaseHandler implements TemplateViewRoute {
 
         Object res = handle();
 
-        this.database.getTransaction().commit();
-        this.database.close();
+        database.getTransaction().commit();
+        database.close();
 
         if (res instanceof ModelAndView) {
             return (ModelAndView) res;
