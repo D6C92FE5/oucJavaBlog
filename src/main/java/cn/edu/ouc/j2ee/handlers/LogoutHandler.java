@@ -8,6 +8,8 @@ public class LogoutHandler extends BaseHandler {
     public Object handle() {
 
         request.session().removeAttribute("user");
+        response.removeCookie("user-id");
+        response.removeCookie("user-key");
         response.redirect("/");
 
         return null;

@@ -14,6 +14,7 @@ import java.util.Date;
 public class PostEditHandlerForPost extends BaseHandler {
     @Override
     public Object handle() {
+
         String postId = request.params(":id");
         if (postId != null) {
             // TODO: read from db
@@ -44,6 +45,7 @@ public class PostEditHandlerForPost extends BaseHandler {
             response.redirect("/post/" + PostId);
         }
         return rendered();
+
     }
     @Override
     public BaseHandler acceptPost(String path) {

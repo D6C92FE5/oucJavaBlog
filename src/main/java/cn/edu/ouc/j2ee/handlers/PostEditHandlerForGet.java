@@ -12,6 +12,7 @@ import cn.edu.ouc.j2ee.entities.UserEntity;
 public class PostEditHandlerForGet extends BaseHandler {
     @Override
     public Object handle() {
+
         String postId = request.params(":id");
         if (postId != null) {
             // TODO: read from db
@@ -21,6 +22,7 @@ public class PostEditHandlerForGet extends BaseHandler {
             modal.put("post","123");
         }
         return rendered();
+
     }
     @Override
     public BaseHandler acceptGet(String path) {

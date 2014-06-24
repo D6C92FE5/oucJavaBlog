@@ -13,6 +13,7 @@ import javax.xml.stream.events.Comment;
 public class PostHandler extends BaseHandler {
     @Override
     public Object handle() {
+
         // TODO: read from db
         String postId = request.params(":id");
         PostEntity Post = (PostEntity)database.createQuery("From PostEntity WHERE id =?").setString(0,postId).uniqueResult();

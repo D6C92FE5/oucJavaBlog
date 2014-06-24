@@ -16,8 +16,8 @@ public class SignupHandler extends BaseHandler {
         if (username == null) {
             return rendered();
         }
-        // TODO: 检查用户名是否已存在，检查两次密码输入是否一致
 
+        // TODO: 检查用户名是否已存在，检查两次密码输入是否一致
         UserEntity User =(UserEntity)database.createQuery("FROM UserEntity WHERE username =?").setString(0,username).uniqueResult();
         if(User!=null)
         {
@@ -25,6 +25,7 @@ public class SignupHandler extends BaseHandler {
         }
         if(!password.equals(password2))
             return showMessage("请输入相同密码");
+
         password = new StrongPasswordEncryptor().encryptPassword(password);
         UserEntity user = new UserEntity();
         user.setUsername(username);
