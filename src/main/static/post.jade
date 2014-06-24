@@ -7,11 +7,13 @@ mixin link-button
   // {{#post}}
   h2.title {{title}}
   .meta
+    // {{#isMy}}
     .operate
       a(href="/post-delete/{{id}}") 删除
       a(href="/post-edit/{{id}}") 修改
+    // {{/isMy}}
     | 由
-    span.author {{author}}
+    span.author {{author.username}}
     | 发表于
     span.date {{date}}
   .body {{{body}}}
@@ -19,7 +21,7 @@ mixin link-button
 
 .comments
   h2.comment-head 评论
-  // {{#comment}}
+  // {{#comments}}
   .comment(id="comment-{{id}}")
     .meta
       | 由
@@ -27,22 +29,18 @@ mixin link-button
       | 发表于
       span.date {{date}}
     p {{{body}}}
-  // {{/comment}}
-  .comment
-    .meta
-      | 由
-      span.author def
-      | 发表于
-      span.date 刚刚
-    p 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+  // {{/comments}}
+  // {{^comments}}
+  .comment 没有评论
+  // {{/comments}}
 
 .comment-add
   h2.comment-head 发表评论
   form(method="post", action="/comment/{{post.id}}")
     .form-group
       label(for="name") 昵称
-      input#title.form-control(type="input", name="name", placeholder="请输入您的昵称")
-    .form-group
+      input#title.form-control(type="input", name="nickname", placeholder="请输入您的昵称", value="{{user.username}}")
+    .form-group.hide
       label(for="email") 邮箱
       input#title.form-control(type="input", name="email", placeholder="请输入您的邮箱")
     .form-group

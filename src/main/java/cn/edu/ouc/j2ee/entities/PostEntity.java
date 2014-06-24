@@ -17,6 +17,7 @@ public class PostEntity {
     private UserEntity author;
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;
@@ -109,5 +110,18 @@ public class PostEntity {
 
     public void setAuthor(UserEntity author) {
         this.author = author;
+    }
+
+
+    protected int commentCount;
+    public void initCommentCount()
+    {
+        commentCount = comments.size();
+    }
+
+    protected boolean isMy;
+    public void initIsMy(UserEntity currentUser)
+    {
+        isMy = this.author.equals(currentUser);
     }
 }

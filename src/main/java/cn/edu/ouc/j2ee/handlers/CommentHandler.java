@@ -12,24 +12,23 @@ public class CommentHandler extends BaseHandler {
     public Object handle() {
 
         String postId = request.params(":post-id");
-        PostEntity post =(PostEntity)database.createQuery("From PostEntity WHERE id =?").setString(0,postId).uniqueResult();
-        String username =  request.queryParams("username");
+        PostEntity post =(PostEntity)database.createQuery("From PostEntity WHERE id =?")
+                .setString(0, postId).uniqueResult();
+
+        String nickname =  request.queryParams("nickname");
         String email = request.queryParams("email");
         String body = request.queryParams("body");
 
         CommentEntity comment  = new CommentEntity();
-        comment.setAuthor(username);
         comment.setPost(post);
+        comment.setDate(new Date());
+        comment.setAuthor(nickname);
         comment.setEmail(email);
         comment.setBody(body);
-        comment.setDate(new Date());
+
         database.save(comment);
-        // TODO: save post to db
-        int  commentId = comment.getId();
 
-        response.redirect("/post/" + postId + "#comment-" + commentId);
-
-        return rendered();
+        return redirect("/post/" + postId + "#comment-" + comment.getId());
 
     }
 

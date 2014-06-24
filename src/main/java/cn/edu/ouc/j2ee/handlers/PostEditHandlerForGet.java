@@ -1,12 +1,7 @@
 package cn.edu.ouc.j2ee.handlers;
 
-import java.util.Date;
-import java.util.HashMap;
-
 import cn.edu.ouc.j2ee.BaseHandler;
-import cn.edu.ouc.j2ee.Util;
 import cn.edu.ouc.j2ee.entities.PostEntity;
-import cn.edu.ouc.j2ee.entities.UserEntity;
 
 
 public class PostEditHandlerForGet extends BaseHandler {
@@ -15,13 +10,12 @@ public class PostEditHandlerForGet extends BaseHandler {
 
         String postId = request.params(":id");
         if (postId != null) {
-            // TODO: read from db
-            PostEntity Post = (PostEntity)database.createQuery("From PostEntity WHERE id =?").setString(0,postId).uniqueResult();
-            if(!Post.getAuthor().equals(currentUser))
-                return null;
-            modal.put("post",Post);
-        } else {
-            modal.put("post","123");
+            PostEntity post = (PostEntity)database.createQuery("From PostEntity WHERE id =?")
+                    .setString(0, postId).uniqueResult();
+            if (!post.getAuthor().equals(currentUser)) {
+                return showMessage("您不能修改他人发表的文章");
+            }
+            modal.put("post", post);
         }
         return rendered();
 

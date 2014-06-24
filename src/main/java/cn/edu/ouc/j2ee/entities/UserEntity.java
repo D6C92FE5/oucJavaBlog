@@ -13,6 +13,7 @@ public class UserEntity {
     private List<PostEntity> posts;
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;

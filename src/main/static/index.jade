@@ -5,35 +5,24 @@ mixin link-button
 
 .posts
 
-  // {{#post}}
+  // {{#posts}}
   .post
     a(href="/post/{{id}}")
       h2.title {{title}}
     .meta
+      // {{#isMy}}
       .operate.show-on-hover
         a(href="/post-delete/{{id}}") 删除
         a(href="/post-edit/{{id}}") 修改
+      // {{/isMy}}
       | 由
-      span.author {{author}}
+      span.author {{author.username}}
       | 发表于
       span.date {{date}}
     .body {{{body}}}
     .comment
-      a(href="/post/{{id}}#comment") {{comment_count}} 条评论
-  // {{/post}}
-
-  .post
-    h2.title 文章 2
-    .meta
-      | 由
-      span.author lzlk
-      | 发表于
-      span.date 三天前
-    .body
-      p 内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-      p 测试测试
-    .comment
-      a(href="/post?id=1#comment") 3 条评论
+      a(href="/post/{{id}}#comment") {{commentCount}} 条评论
+  // {{/posts}}
 
 ul.pager
   li.previous.disabled
