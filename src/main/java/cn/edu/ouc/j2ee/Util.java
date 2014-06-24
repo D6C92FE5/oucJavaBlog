@@ -17,6 +17,14 @@ public class Util {
         return dateFormater.format(date);
     }
 
+    public static int tryToInt(String s, int on_invalid) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return on_invalid;
+        }
+    }
+
     public static Session getHibernateSession() {
         Configuration config = new Configuration().configure();
         return config.buildSessionFactory(new StandardServiceRegistryBuilder()

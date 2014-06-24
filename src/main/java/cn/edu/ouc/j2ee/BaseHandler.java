@@ -37,11 +37,22 @@ public abstract class BaseHandler implements TemplateViewRoute {
         this.hyphenName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, name);
     }
 
+    protected Object redirect(String location) {
+        response.redirect(location);
+        return null;
+    }
+
     protected ModelAndView rendered() {
         return rendered(modal.clone());
     }
     protected ModelAndView rendered(Object modal) {
         return new ModelAndView(modal, hyphenName + ".html");
+    }
+
+    protected void login(UserEntity user) {
+        request.session().attribute("user", user);
+        response.cookie("user-id", String.valueOf(user.getId()));
+        response.cookie("user-key", String.valueOf(user.getPassword()));
     }
 
     protected Object showMessage(String message) {
@@ -59,13 +70,20 @@ public abstract class BaseHandler implements TemplateViewRoute {
         database.beginTransaction();
 
         currentUser = request.session().attribute("user");
+        if (currentUser == null) {
+            int userId = Util.tryToInt(request.cookie("user-id"), -1);
+            String password = request.cookie("user-key");
+            currentUser = (UserEntity)database.createQuery("FROM UserEntity WHERE id=? and password=?")
+                    .setParameter(0, userId).setParameter(1, password).uniqueResult();
+            request.session().attribute("user", currentUser);
+        }
 
         if (authenticated && currentUser == null) {
             response.redirect("/login");
             return null;
         }
 
-        modal.put("user", request.session().attribute("user"));
+        modal.put("user", currentUser);
 
         Object res = handle();
 
