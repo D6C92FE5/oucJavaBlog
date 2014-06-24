@@ -17,6 +17,8 @@ public class PostEditHandlerForGet extends BaseHandler {
         if (postId != null) {
             // TODO: read from db
             PostEntity Post = (PostEntity)database.createQuery("From PostEntity WHERE id =?").setString(0,postId).uniqueResult();
+            if(!Post.getAuthor().equals(currentUser))
+                return null;
             modal.put("post",Post);
         } else {
             modal.put("post","123");

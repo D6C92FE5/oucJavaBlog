@@ -11,10 +11,10 @@ public class PostDeleteHandler extends BaseHandler {
         String postId = request.params(":id");
         PostEntity  post = (PostEntity)database.createQuery("FROM PostEntity WHERE id=?")
                 .setString(0, postId).uniqueResult();
-        if(post!=null) {
-            database.createQuery("delete  From PostEntity where id =?").setString(0, postId);
-        }
-        else return showMessage("文章不存在");
+        if(!post.getAuthor().equals(currentUser))
+            return null;
+        if(post!=null)   database.delete(post);
+        else return "文章不存在";
 
         // TODO: delete post from db
 

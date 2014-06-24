@@ -16,6 +16,9 @@ public class PostEditHandlerForPost extends BaseHandler {
     public Object handle() {
 
         String postId = request.params(":id");
+
+
+
         if (postId != null) {
             // TODO: read from db
             PostEntity post = (PostEntity)database.createQuery("FROM PostEntity WHERE id=?").setString(0,postId).uniqueResult();
