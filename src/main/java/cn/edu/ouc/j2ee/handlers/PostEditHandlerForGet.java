@@ -5,32 +5,23 @@ import java.util.HashMap;
 
 import cn.edu.ouc.j2ee.BaseHandler;
 import cn.edu.ouc.j2ee.Util;
+import cn.edu.ouc.j2ee.entities.PostEntity;
+import cn.edu.ouc.j2ee.entities.UserEntity;
 
 
 public class PostEditHandlerForGet extends BaseHandler {
     @Override
     public Object handle() {
-
         String postId = request.params(":id");
         if (postId != null) {
             // TODO: read from db
-            HashMap<String, Object> post = new HashMap<>();
-            post.put("id", 1);
-            post.put("title", "文章 1");
-            post.put("author", "test");
-            post.put("date", Util.toString(new Date()));
-            post.put("body", "<p>测试</p><p>内容</p>");
-            post.put("public", false);
-
-            modal.put("post", post);
+            PostEntity Post = (PostEntity)database.createQuery("From PostEntity WHERE id =?").setString(0,postId).uniqueResult();
+            modal.put("post",Post);
         } else {
-            modal.put("post", true);
+            modal.put("post","123");
         }
-
         return rendered();
-
     }
-
     @Override
     public BaseHandler acceptGet(String path) {
         super.acceptGet(path);

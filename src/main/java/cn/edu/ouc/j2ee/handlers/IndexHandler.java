@@ -1,29 +1,22 @@
 package cn.edu.ouc.j2ee.handlers;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 
 import cn.edu.ouc.j2ee.BaseHandler;
-import cn.edu.ouc.j2ee.Util;
+import cn.edu.ouc.j2ee.entities.PostEntity;
+import org.eclipse.jetty.server.Authentication;
 
 
 public class IndexHandler extends BaseHandler {
     @Override
     public Object handle() {
+        List<PostEntity> postList = (List<PostEntity>)database.createQuery("From PostEntity order by date desc").list();
 
-        // TODO: read from db
-        HashMap<String, Object> post = new HashMap<>();
-        post.put("id", 1);
-        post.put("title", "文章 1");
-        post.put("author", "test");
-        post.put("date", Util.toString(new Date()));
-        post.put("body", "<p>测试</p><p>内容</p>");
-        post.put("comment_count", 5);
-
-        modal.put("post", Arrays.asList(post, post, post));
-
+        modal.put("post", postList);
         return rendered();
-
     }
 }
