@@ -32,10 +32,8 @@ public class SignupHandler extends BaseHandler {
 
         database.save(user);
 
-        request.session().attribute("user", user);
-        response.redirect("/");
-
-        return null;
+        login(user);
+        return redirect("/");
 
     }
 }

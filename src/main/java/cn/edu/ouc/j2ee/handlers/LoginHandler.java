@@ -13,6 +13,10 @@ public class LoginHandler extends BaseHandler {
         String password = request.queryParams("password");
 
         if (username == null) {
+            if (currentUser != null) {
+                return redirect("/");
+            }
+
             return rendered();
         }
 
@@ -23,10 +27,8 @@ public class LoginHandler extends BaseHandler {
             return showMessage("用户名或密码错误");
         }
 
-        request.session().attribute("user", user);
-        response.redirect("/");
-
-        return null;
+        login(user);
+        return redirect("/");
 
     }
 }
