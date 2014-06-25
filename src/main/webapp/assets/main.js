@@ -4,7 +4,7 @@ moment.lang('zh-CN');
 
 current_href = location.pathname.split("/")[1] || 'index';
 
-$('.navbar a[href^="' + current_href + '"]').parent().addClass('active');
+$('.navbar a[href^="/' + current_href + '"]').parent().addClass('active');
 
 $('.go-back').click(function() {
   return history.back();
