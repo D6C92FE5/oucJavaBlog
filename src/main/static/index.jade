@@ -1,6 +1,7 @@
 
-mixin link-button
-  a(class=attributes.class, id=attributes.id, href="javascript:;")
+mixin icon-link(icon, href)
+  a(class=attributes.class, id=attributes.id, href=(href || "#"))
+    i.fa.fa-fw(class="fa-" + icon)
     block
 
 .posts
@@ -12,8 +13,8 @@ mixin link-button
     .meta
       // {{#isMy}}
       .operate.show-on-hover
-        a(href="/post-delete/{{id}}") 删除
-        a(href="/post-edit/{{id}}") 修改
+        +icon-link("trash-o", "/post-delete/{{id}}").btn.btn-danger.btn-xs 删除
+        +icon-link("edit", "/post-edit/{{id}}").btn.btn-primary.btn-xs 修改
       // {{/isMy}}
       | 由
       span.author {{author.username}}
@@ -24,8 +25,8 @@ mixin link-button
       a(href="/post/{{id}}#comment") {{commentCount}} 条评论
   // {{/posts}}
 
-ul.pager
+ul.pager.hide
   li.previous.disabled
-    +link-button &larr; 上一页
+    a &larr; 上一页
   li.next
-    +link-button 下一页 &rarr;
+    a 下一页 &rarr;

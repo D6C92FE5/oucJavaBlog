@@ -12,4 +12,6 @@ form(method="post")
     div
       input.checkbox.switch(type="checkbox", name="publicity", checked="{{post.publicity}}",
           data-on-color="success", data-on-text="所有人可见", data-off-text="仅自己可见")
-  button.btn.btn-primary(type="submit") 提交
+  button.btn.btn-primary(type="submit")
+    i.fa.fa-fw.fa-check
+    span 提交
