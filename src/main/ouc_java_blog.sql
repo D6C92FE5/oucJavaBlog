@@ -15,7 +15,7 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`id`),
   KEY `comment_post` (`post_id`),
   CONSTRAINT `comment_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for post
@@ -31,7 +31,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`id`),
   KEY `post_author` (`author_id`),
   CONSTRAINT `post_author` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user
