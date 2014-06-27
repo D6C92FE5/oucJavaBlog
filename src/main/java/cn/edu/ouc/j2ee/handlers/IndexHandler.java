@@ -17,7 +17,7 @@ public class IndexHandler extends BaseHandler {
                     "From PostEntity where publicity = true order by date desc").list();
         }
         else {
-            if(false)
+            if(request.queryParams("my")=="")
                 posts = (List<PostEntity>)database.createQuery("From PostEntity where author.id = ? order by date desc")
                         .setInteger(0,currentUser.getId()).list();
             else

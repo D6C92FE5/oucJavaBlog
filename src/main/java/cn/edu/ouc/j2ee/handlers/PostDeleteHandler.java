@@ -15,11 +15,9 @@ public class PostDeleteHandler extends BaseHandler {
         if (post == null || !post.getAuthor().equals(currentUser)) {
             return redirect("/");
         }
-        database.createSQLQuery("Delete post from PostEntity where post.id = ?").setInteger(0,Integer.parseInt(postId));
+        database.createQuery("Delete from PostEntity post where post.id = ?").setInteger(0,Integer.parseInt(postId));
 
         //database.delete(post);
-
-
         return redirect("/");
 
     }
